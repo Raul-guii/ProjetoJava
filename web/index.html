@@ -1,31 +1,98 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>login-cadastro</title> 
+        <title>login_cadastro</title> 
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <link rel="stylesheet" type="text/css" href="style.css" />
+        
+        <script type="text/javascript">
+            function validar(){
+                var nome_cadastro = formCadastro.nome_cad.value;
+                
+                    if (nome_cadastro == "" || senha_cadastro.length < 6){
+                        alert('Preencha o campo com seu nome!');
+                        formCadastro.nome_cad.focus();
+                    return false;    
+                    }
+            }
+        </script>
+        
+        <script type="text/javascript">
+            function validarCadastro(){
+            
+            var nome_cadastro = formCadastro.nome_cad.value;
+            var email_cadastro = formCadastro.email_cad.value;
+            var senha_cadastro = formCadastro.senha_cad.value;
+            
+                (nome_cadastro == ""){
+                    alert('Preencha o campo com seu nome');
+                    formCadastro.nome_cad.focus();
+                return false;   
+            }
+                else if (email_cadastro == ""){
+                    alert('Preencha o campo com seu email!');
+                    formCadastro.email_cad.focus();
+                return false;
+                }
+                else if (senha_cadastro == "" || senha_cadastro.length < 6){
+                    alert('Preencha o campo com sua senha!');
+                    formCadastro.senha_cad.focus();
+                return false;
+                }
+                else{
+                    alert('Usuário cadastrado com sucesso!\n O w-mail do cadastro ' +
+                           email_cadastro + ' terá que ser validado! \n Favor confirmar\n\
+                           o cadastro nno seu e_mail!');
+                }
+                
+            }
+        </script>
+        
+        <script type="text/javascript">
+            function validarLogin(){
+                
+                var email_login = formLogin.email_login.value;
+                var senha_login = formLogin.senha_login.value;
+                
+                else if (email_login == ""){
+                    alert('Preencha o campo com seu email!(Mínimo de 6 e máximo de 8 caracteres)');
+                    formLogin.email_login.value;
+                return false;    
+                }
+                else if (senha_login == "" || senha_login.length < 6){
+                    alert('Preencha o campo sua senha!(Mínimo de 6 e máximo de 8 caracteres)');
+                    formLogin.senha_login.value;
+                return false;    
+                }
+                else{
+                    alert('Bem vindo ao Sistema ' + email_login);
+                }
+            }
+        </script>
+        
     </head>
     
     <body> 
         <div class="container"> 
             <a class="links" id="paracadastro"></a>
             <a class="links" id="paralogin"></a> 
+            
             <div class="content">
                 
                 <!--FORMULÁRIO DE LOGIN--> 
                 <div id="login"> 
-                    <form method="post" action=""> 
+                    <form name="formLogin" method="post" action=""> 
                         <h1>Login</h1> 
-                        <p> 
-                            <label for="nome_login">Seu e-mail</label>
-                            <input id="name_login" name="nome_login" required="required"
-                             type="text" placeholder="ex. contato@projecaoceilandia.com"/>
-                        </p>
+                         <p> 
+                            <label for="email_login">Seu e-mail</label>
+                            <input id="email_login" name="email_login" required="required"
+                             type="text" placeholder="ex. contato@projecao.com"/>
+                        </p> 
                         
                         <p>
-                            <label for="email_login">Sua senha</label> 
-                            <input id="email_login" name="email_login" required="required"
+                            <label for="senha_login">Sua senha</label> 
+                            <input id="senha_login" name="senha_login" required="required"
                              type="password" placeholder="ex. senha" />         
                         </p>
                         
@@ -35,7 +102,8 @@
                         </p>
                         
                         <p>
-                            <input type="submit" value="Logar"> 
+                            <input type="submit" value="Logar"
+                                   onclick = "reeturn validarLogin()"/> 
                         </p>
                         
                         <p class="link"> Não tem conta? Clique aqui
@@ -45,8 +113,9 @@
                     </form> 
                 </div>
                 
+                <!--FROMULARIO DE CADASTRO-->
                 <div id="cadastro"> 
-                    <form method="post" action=""> 
+                    <form name="formCadastro" method="post" action=""> 
                         <h1>Cadastro</h1>
                         <p> 
                             <label for="nome_cad">Seu nome</label> 
@@ -62,12 +131,12 @@
                         
                         <p> 
                             <label for="senha_cad">Sua senha</label> 
-                            <input id="senha_cad" name="senha_cad" required="required" 
-                             type="password" placeholder="Senha"/>
+                            <input id="senha_cad" name="senha_cad" required="required"
+                             maxlength="8" type="password" placeholder="ex. 1234"/>
                         </p>
                         
                         <p> 
-                            <input type="submit" value="Cadastrar"/>
+                            <input type="submit" value="Cadastrar" onclick="return validarCadastro()"/>
                         </p>
                     </form> 
                     
